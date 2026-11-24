@@ -1,0 +1,79 @@
+{
+  "manifestVersion": 1,
+  "id": "work-items-relations",
+  "version": "1.0.0",
+  "name": "Work Items Relations in Queries",
+  "description": "Open recursive child work items or related work items directly in Azure Boards Queries from work item context menus and Queries.",
+  "publisher": "StjepanPuljko",
+  "public": false,
+  "categories": [
+    "Azure Boards"
+  ],
+  "icons": {
+    "default": "images/extension-icon.png"
+  },
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "scopes": [
+    "vso.work",
+    "vso.work_write"
+  ],
+  "demands": [
+    "api-version/5.0"
+  ],
+  "files": [
+    {
+      "path": "dist",
+      "addressable": true
+    },
+    {
+      "path": "images",
+      "addressable": true
+    }
+  ],
+  "contributions": [
+    {
+      "id": "open-children-in-queries",
+      "type": "ms.vss-web.action",
+      "description": "Opens a recursive tree query of child work items in Azure Boards Queries.",
+      "targets": [
+        "ms.vss-work-web.work-item-context-menu",
+        "ms.vss-work-web.work-item-toolbar-menu",
+        "ms.vss-work-web.query-result-work-item-menu",
+        "ms.vss-work-web.work-item-query-results-toolbar-menu"
+      ],
+      "properties": {
+        "text": "Open Children in Queries",
+        "title": "Open recursive child work items tree in Queries",
+        "toolbarText": "Open Children in Queries",
+        "icon": "images/children-icon.png",
+        "groupId": "actions",
+        "uri": "dist/action.html",
+        "registeredObjectId": "open-children-in-queries"
+      }
+    },
+    {
+      "id": "open-related-in-queries",
+      "type": "ms.vss-web.action",
+      "description": "Opens a direct-links query of related work items in Azure Boards Queries.",
+      "targets": [
+        "ms.vss-work-web.work-item-context-menu",
+        "ms.vss-work-web.work-item-toolbar-menu",
+        "ms.vss-work-web.query-result-work-item-menu",
+        "ms.vss-work-web.work-item-query-results-toolbar-menu"
+      ],
+      "properties": {
+        "text": "Open Related in Queries",
+        "title": "Open related work items in Queries",
+        "toolbarText": "Open Related in Queries",
+        "icon": "images/related-icon.png",
+        "groupId": "actions",
+        "uri": "dist/action.html",
+        "registeredObjectId": "open-related-in-queries"
+      }
+    }
+  ]
+}

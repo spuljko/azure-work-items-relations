@@ -1,0 +1,25 @@
+{
+  "name": "work-items-relations",
+  "version": "1.0.0",
+  "description": "Azure DevOps extension to open child (recursive tree) or related work items in Queries from work item context menus and Queries.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode production",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/wiql-and-context.test.mjs",
+    "package": "npm run typecheck && npm test && npm run build && tfx extension create --manifest-globs vss-extension.json --output-path dist-vsix",
+    "clean": "node -e \"const fs=require('fs');['dist','dist-vsix'].forEach(d=>fs.rmSync(d,{recursive:true,force:true}))\""
+  },
+  "dependencies": {
+    "azure-devops-extension-api": "^4.250.0",
+    "azure-devops-extension-sdk": "^4.0.2"
+  },
+  "devDependencies": {
+    "tfx-cli": "^0.22.0",
+    "ts-loader": "^9.6.2",
+    "typescript": "^5.7.0",
+    "webpack": "^5.113.0",
+    "webpack-cli": "^7.3.1"
+  }
+}
