@@ -1,32 +1,32 @@
 # Work Items Relations in Queries (Azure DevOps Extension)
 
-Ekstenzija za Azure DevOps koja u kontekstni izbornik (`⋮` / `...`) na work itemima i u **Queries** dodaje dvije opcije:
+An Azure DevOps extension that adds two options to the context menu (`⋮` / `...`) for work items and in **Queries**:
 
-- **Open Children in Queries** — otvara rekurzivno stablo (*Tree of work items*, `System.LinkTypes.Hierarchy-Forward`, `MODE (Recursive)`) za odabrani work item (ili više njih).
-- **Open Related in Queries** — otvara povezane (*Related*) work iteme (`System.LinkTypes.Related`, `MODE (MayContain)`) za odabrani work item (ili više njih).
+- **Open Children in Queries** — opens a recursive tree (*Tree of work items*, `System.LinkTypes.Hierarchy-Forward`, `MODE (Recursive)`) for one or more selected work items.
+- **Open Related in Queries** — opens the *Related* work items (`System.LinkTypes.Related`, `MODE (MayContain)`) for one or more selected work items.
 
-## Gdje se pojavljuje u sučelju
+## Where it appears in the interface
 
-Kontribucije su registrirane na sljedeće Azure Boards ciljeve:
-- `ms.vss-work-web.work-item-context-menu` (Backlogs, Boards, Work Items lista, Work Item forma)
-- `ms.vss-work-web.work-item-toolbar-menu` (alatna traka na Work Item formi)
-- `ms.vss-work-web.query-result-work-item-menu` (`⋮` izbornik na retku u *Queries*)
-- `ms.vss-work-web.work-item-query-results-toolbar-menu` (`...` alatna traka u *Queries*)
+The contributions are registered on the following Azure Boards targets:
+- `ms.vss-work-web.work-item-context-menu` (Backlogs, Boards, the Work Items list, and the Work Item form)
+- `ms.vss-work-web.work-item-toolbar-menu` (the toolbar on the Work Item form)
+- `ms.vss-work-web.query-result-work-item-menu` (the `⋮` menu on a row in *Queries*)
+- `ms.vss-work-web.work-item-query-results-toolbar-menu` (the `...` toolbar in *Queries*)
 
-## Kako spakirati i instalirati u svoju Azure DevOps organizaciju
+## How to package and install it in your Azure DevOps organization
 
-1. Otvori [vss-extension.json](vss-extension.json) i zamijeni `"publisher": "your-publisher-id"` sa svojim Publisher ID-em s [Visual Studio Marketplace Manage Publishers](https://marketplace.visualstudio.com/manage).
-   - Ako još nemaš publisher, na istom portalu kreiraj besplatni publisher (npr. za privatne ekstenzije).
-   - `"public": false` znači da ekstenzija ostaje **privatna** — nije potrebna javna objava ni pregled Marketplacea.
-2. Instaliraj ovisnosti (ako već nisu) i napravi `.vsix` paket:
+1. Open [vss-extension.json](vss-extension.json) and replace `"publisher": "your-publisher-id"` with your Publisher ID from [Visual Studio Marketplace Manage Publishers](https://marketplace.visualstudio.com/manage).
+   - If you don't have a publisher yet, create a free publisher on the same portal (for example, for private extensions).
+   - `"public": false` means the extension remains **private** — no public publication or Marketplace review is required.
+2. Install the dependencies (if not already installed) and create a `.vsix` package:
    ```powershell
    npm install
    npm run package
    ```
-   Paket nastaje u `dist-vsix/<publisher>.work-items-relations-1.0.0.vsix`.
-3. Uploadaj `.vsix` na [Visual Studio Marketplace Manage Publishers](https://marketplace.visualstudio.com/manage), zatim klikni **Share** i podijeli ga sa svojom Azure DevOps organizacijom, pa ga instaliraj u *Organization Settings → Extensions*.
+   The package is created at `dist-vsix/<publisher>.work-items-relations-1.0.0.vsix`.
+3. Upload the `.vsix` to [Visual Studio Marketplace Manage Publishers](https://marketplace.visualstudio.com/manage), then click **Share** and share it with your Azure DevOps organization. Install it under *Organization Settings → Extensions*.
 
-## Provjere (lokalno)
+## Checks (local)
 
 ```powershell
 npm run typecheck
